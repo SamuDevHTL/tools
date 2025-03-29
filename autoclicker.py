@@ -1,16 +1,17 @@
 import sys
 import pyautogui
 from PyQt6.QtWidgets import (
-    QApplication, QWidget, QVBoxLayout, QLabel, QLineEdit, QPushButton, QComboBox, QMessageBox
+    QApplication, QWidget, QVBoxLayout, QLabel, QLineEdit, QPushButton, QComboBox, QMessageBox, QShortcut
 )
 from PyQt6.QtCore import QTimer, Qt
-from PyQt6.QtGui import QFont, QPalette, QColor
+from PyQt6.QtGui import QFont, QPalette, QColor, QKeySequence
 
 
 class AutoClickerApp(QWidget):
     def __init__(self):
         super().__init__()
         self.init_ui()
+        self.is_clicking = False  # Track if the clicker is running
 
     def init_ui(self):
         self.setWindowTitle("Auto Clicker")
@@ -58,7 +59,17 @@ class AutoClickerApp(QWidget):
 
         self.setLayout(layout)
 
+        # Set up hotkeys
+        self.start_shortcut = QShortcut(QKeySequence(Qt.Key_F1), self)
+        self.start_shortcut.activated.connect(self.start_countdown)
+
+        self.stop_shortcut = QShortcut(QKeySequence(Qt.Key_F2), self)
+        self.stop_shortcut.activated.connect(self.stop_clicking)
+
     def start_countdown(self):
+        if self.is_clicking:
+            return  # If already clicking, don't start another round
+
         try:
             self.num_clicks = int(self.num_clicks_input.text())
             self.delay = float(self.delay_input.text())
@@ -87,13 +98,23 @@ class AutoClickerApp(QWidget):
             self.status_label.setText(f"Starting in {self.countdown}...")
 
     def start_clicking(self):
+        self.is_clicking = True
         click_type = "left" if self.click_type.currentText() == "Left Click" else "right"
 
         for _ in range(self.num_clicks):
+            if not self.is_clicking:
+                break  # Stop if clicker is interrupted
             pyautogui.click(button=click_type)
             QTimer.singleShot(int(self.delay * 1000), lambda: None)  # Simulate delay
 
-        self.status_label.setText("✅ Completed!")
+        if self.is_clicking:
+            self.status_label.setText("✅ Completed!")
+        self.start_button.setDisabled(False)
+        self.is_clicking = False
+
+    def stop_clicking(self):
+        self.is_clicking = False
+        self.status_label.setText("❌ Stopped!")
         self.start_button.setDisabled(False)
 
 
