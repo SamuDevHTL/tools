@@ -7,6 +7,8 @@
 ### 2. **autoclicker.py**
 - Supports left and right clicks.
 - Customizable click intervals.
+- F1 to start autoclicker
+- F2 to stop clicking
 
 ### 3. **AcBuy.py**
 - Automated payment calculation
