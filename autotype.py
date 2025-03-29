@@ -13,7 +13,7 @@ class AutoTyperApp(QWidget):
         self.init_ui()
 
     def init_ui(self):
-        self.setWindowTitle("Auto Typer - Dark Mode")
+        self.setWindowTitle("Auto Typer")
         self.setGeometry(100, 100, 400, 250)
 
         # Set dark theme
