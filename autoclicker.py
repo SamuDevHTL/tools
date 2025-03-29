@@ -17,7 +17,6 @@ class AutoClickerApp(QWidget):
         self.setWindowTitle("Auto Clicker")
         self.setGeometry(100, 100, 400, 300)
 
-        # Dark theme
         self.setStyleSheet("""
             QWidget { background-color: #121212; color: #E0E0E0; font-family: Arial; }
             QLabel { font-size: 14px; }
@@ -59,7 +58,6 @@ class AutoClickerApp(QWidget):
 
         self.setLayout(layout)
 
-        # Set up hotkeys
         self.start_shortcut = QShortcut(QKeySequence(Qt.Key_F1), self)
         self.start_shortcut.activated.connect(self.start_countdown)
 
@@ -121,7 +119,6 @@ class AutoClickerApp(QWidget):
 if __name__ == "__main__":
     app = QApplication(sys.argv)
 
-    # Enable Dark Mode (Optional)
     dark_palette = QPalette()
     dark_palette.setColor(QPalette.ColorRole.Window, QColor(18, 18, 18))
     dark_palette.setColor(QPalette.ColorRole.WindowText, QColor(224, 224, 224))

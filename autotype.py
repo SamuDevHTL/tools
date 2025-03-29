@@ -6,7 +6,6 @@ from PyQt6.QtWidgets import (
 from PyQt6.QtCore import QTimer, Qt
 from PyQt6.QtGui import QFont, QPalette, QColor
 
-
 class AutoTyperApp(QWidget):
     def __init__(self):
         super().__init__()
@@ -25,7 +24,6 @@ class AutoTyperApp(QWidget):
             QPushButton:hover { background-color: #005F99; }
         """)
 
-        # Layout
         layout = QVBoxLayout()
 
         self.label = QLabel("Enter Sentence:")
@@ -92,7 +90,6 @@ class AutoTyperApp(QWidget):
 if __name__ == "__main__":
     app = QApplication(sys.argv)
 
-    # Enable Dark Mode in Windows (Optional)
     dark_palette = QPalette()
     dark_palette.setColor(QPalette.ColorRole.Window, QColor(18, 18, 18))
     dark_palette.setColor(QPalette.ColorRole.WindowText, QColor(224, 224, 224))
