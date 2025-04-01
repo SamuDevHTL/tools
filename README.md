@@ -4,13 +4,7 @@
 - types out given text as fast as possible
 - num of times written is chooseable
 
-### 2. **autoclicker.py**
-- Supports left and right clicks.
-- Customizable click intervals.
-- F1 to start autoclicker
-- F2 to stop clicking
-
-### 3. **AcBuy.py**
+### 2. **AcBuy.py**
 - Automated payment calculation
 - calculating with price/weight
 
